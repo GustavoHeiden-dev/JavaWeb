@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cadastro</title>
+<style>
+    .btn-voltar {
+        display: inline-block;
+        text-align: center;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .btn-voltar:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+	
+
+<form action="./Consulta.jsp" method="POST" onsubmit="return validarFormulario()">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="background: white; padding: 40px; border-radius: 10px; display: flex; flex-direction: column; gap: 15px; width: 300px;">
+
+            <h2 style="text-align: center; color: #333;">Cadastro</h2>
+
+            <label for="nome" style="font-weight: bold;">Informe nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Ex: João"
+                style="padding: 10px; border: 1px solid; border-radius: 5px;" />
+
+            <label for="email" style="font-weight: bold;">Informe Email</label>
+            <input type="text" name="email" id="email" placeholder="Ex: João@gmail.com"
+                style="padding: 10px; border: 1px solid; border-radius: 5px;" />
+
+            <label for="fone" style="font-weight: bold;">Informe fone</label>
+            <input type="text" name="fone" id="fone" placeholder="Ex: (99) 9999-9999"
+                style="padding: 10px; border: 1px solid; border-radius: 5px;" />
+
+            <button
+                style="padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">
+                Gravar
+            </button>
+
+    
+            <a href="./Index.html" class="btn-voltar">Voltar para Home</a>
+
+        </div>
+    </div>
+</form>
+
+
+
+
+
+	<script>
+		function validarFormulario() {
+			var nome = document.getElementById("nome").value.trim();
+			var email = document.getElementById("email").value.trim();
+			var fone = document.getElementById("fone").value.trim();
+
+			if (nome === "" || email === "" || fone === "") {
+				alert("Todos os campos devem ser preenchidos!");
+				return false;  
+			}
+
+			return true; 
+		}
+	</script>
+</body>
+</html>
