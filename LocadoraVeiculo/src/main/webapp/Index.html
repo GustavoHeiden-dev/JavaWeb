@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Locadora de Veículos AutoTop</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #1f4037, #99f2c8);
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .navbar {
+        background-color: #1f4037;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 18px 20px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+        background-color: #145a32;
+        color: white;
+    }
+
+    .navbar a.active {
+        background-color: #99f2c8;
+        color: #1f4037;
+    }
+
+    .content {
+        padding: 60px 20px;
+        text-align: center;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 70px);
+    }
+
+    .content h1 {
+        font-size: 3em;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .content p {
+        font-size: 1.2em;
+        max-width: 700px;
+        margin: 0 auto 30px auto;
+    }
+
+    .action-buttons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        max-width: 800px;
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+
+    .action-buttons-grid a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #99f2c8;
+        color: #1f4037;
+        padding: 20px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        min-height: 80px;
+        text-align: center;
+    }
+
+    .action-buttons-grid a:hover {
+        background-color: #6ee5a9;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 768px) {
+        .navbar a {
+            float: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .action-buttons-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <a href="Index.html" class="active">Home</a>
+    <a href="Cadastro.html">Cadastrar Veículo</a>
+    <a href="Consulta.jsp">Consultar Veículos</a>
+    <a href="CadastroCli.html">Cadastrar Cliente</a>
+    <a href="verClientes.jsp">Consultar Clientes</a>
+</div>
+<div class="content">
+    <h1>Bem-vindo à Locadora AutoTop</h1>
+    <p>Escolha uma opção abaixo para gerenciar veículos e clientes.</p>
+
+    <div class="action-buttons-grid">
+        <a href="Cadastro.html">Cadastrar Veículo</a>
+        <a href="Consulta.jsp">Consultar Veículos</a>
+        <a href="CadastroCli.html">Cadastrar Cliente</a>
+        <a href="verClientes.jsp">Consultar Clientes</a>
+    </div>
+</div>
+</body>
+</html>

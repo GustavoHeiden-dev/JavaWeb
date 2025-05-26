@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Veículo | Concessionária AutoTop</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #1f4037, #99f2c8);
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-box {
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        width: 350px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #1f4037;
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #1f4037;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #145a32;
+    }
+
+    .btn-voltar {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #1f4037;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-voltar:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <form action="./Vercarros.jsp" method="POST" onsubmit="return validarFormulario()">
+        <div class="form-box">
+            <h2>Cadastro de Veículo</h2>
+
+            <label for="placa">Placa</label>
+            <input type="text" name="placa" id="placa" placeholder="Ex: ABC-1234" />
+
+            <label for="marca">Marca</label>
+            <input type="text" name="marca" id="marca" placeholder="Ex: Toyota" />
+
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" id="modelo" placeholder="Ex: Corolla" />
+
+            <label for="ano">Ano</label>
+            <input type="number" name="ano" id="ano" placeholder="Ex: 2022" />
+
+            <label for="cor">Cor</label>
+            <input type="text" name="cor" id="cor" placeholder="Ex: Prata" />
+
+            <button type="submit">Cadastrar Veículo</button>
+
+            <a href="./Index.html" class="btn-voltar">Voltar para Home</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function validarFormulario() {
+        const placa = document.getElementById("placa").value.trim();
+        const marca = document.getElementById("marca").value.trim();
+        const modelo = document.getElementById("modelo").value.trim();
+        const ano = document.getElementById("ano").value.trim();
+        const cor = document.getElementById("cor").value.trim();
+
+        if (!placa || !marca || !modelo || !ano || !cor) {
+            alert("Todos os campos devem ser preenchidos!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>
