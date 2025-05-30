@@ -13,23 +13,27 @@ import utils.ConexaoDB;
 
 public class ClienteDao {
 
-	/*public static List<Cliente> clientes = new ArrayList();
+	public static Cliente getClienteById(int id) {
+		Cliente clientes = new Cliente();
+		try {
+			Connection con = ConexaoDB.getConexao();
 
-	public static List<Cliente> getClientes() {
+			String sql = "select * from tb_Cliente where id = ?";
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			if (rs.next()) {
+				clientes.setId( rs.getString("id"));
+				clientes.setNome(rs.getString("nome"));
+				clientes.setEmail(rs.getString("email"));
+				clientes.setFone(rs.getString("fone"));
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 		return clientes;
 	}
-
-	public static void setClientes(Cliente cliente) {
-		clientes.add(cliente);
-	}*/
-
-	/*
-	 * public static List<Cliente> ClienteDao() { clientes.add(new Cliente(1,
-	 * "maria", "maria@gmail.com", "(47)9076-1234")); clientes.add(new Cliente(2,
-	 * "jose", "jose@gmail.com", "(47)9076-3412")); clientes.add(new Cliente(3,
-	 * "maria", "maria@gmail.com", "(47)9076-12356")); }
-	 */
-
+	
 	public static Cliente insert(Cliente cliente) {
 		try {
 			Connection con = ConexaoDB.getConexao();
@@ -63,4 +67,21 @@ public class ClienteDao {
 		}
 		return clientes;
 	}
+	  public static void update(Cliente cliente) {
+	        Connection con = null;
+	        PreparedStatement stm = null;
+	        try {
+	            con = ConexaoDB.getConexao();
+	            String sql = "UPDATE tb_Cliente SET nome = ?, email = ?, fone = ? WHERE id = ?";
+	            stm = con.prepareStatement(sql);
+	            stm.setString(1, cliente.getNome());
+	            stm.setString(2, cliente.getEmail());
+	            stm.setString(3, cliente.getFone());
+	            stm.setString(4, cliente.getId());
+	            stm.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            throw new RuntimeException("Erro ao atualizar cliente: " + e.getMessage());
+	        }
+	  }
 }

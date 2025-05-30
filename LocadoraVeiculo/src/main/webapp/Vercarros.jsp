@@ -21,8 +21,14 @@
         String ano = request.getParameter("ano");
         String cor = request.getParameter("cor");
 
-        Carros novoCarro = new Carros(placa, marca, modelo, ano, cor);
-        DaoCarros.insert(novoCarro);
+     	Carros carro = new Carros();
+     	carro.setPlaca(placa);
+     	carro.setMarca(marca);
+     	carro.setModelo(modelo);
+     	carro.setAno(ano);
+     	carro.setCor(cor);
+     	CarrosControler caControler = new CarrosControler();
+     	caControler.salvar(carro);
 
         response.sendRedirect("Consulta.jsp");
         return;

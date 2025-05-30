@@ -6,19 +6,37 @@ public class Carros {
 	private String modelo;
 	private String ano;
 	private String cor;
+	private String id;
 
 	public Carros() {
 		
 	}
 
-	public Carros(String placa, String marca, String modelo, String ano, String cor) {
+	
+
+	public Carros(String placa, String marca, String modelo, String ano, String cor, String id) {
 		super();
 		this.placa = placa;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
 		this.cor = cor;
+		this.id = id;
 	}
+
+
+	
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 
 	public String getPlaca() {
 		return placa;

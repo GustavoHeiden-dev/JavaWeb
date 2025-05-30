@@ -70,7 +70,61 @@
     .btn-voltar:hover {
         background-color: #145a32;
     }
+    .action-cell {
+    width: 150px; 
+    text-align: center;
+    white-space: nowrap;
+}
+
+.action-cell .btn-action {
+    display: inline-block; 
+    padding:0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    margin: 0 3px;
+}
+
+
+
+.action-cell .btn-delete {
+    background-color: #f44336; 
+    color: white;
+}
+
+.action-cell .btn-delete:hover {
+    background-color: #da190b;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
 </style>
+<script type="text/javascript">
+    function confirmarExclusao(idCarro) {
+        if (confirm("Tem certeza que deseja excluir o carro com ID " + idCarro + "?")) {
+            document.getElementById('formDelete' + idCarro).submit();
+        }
+    }
+</script>
 </head>
 <body>
 
@@ -78,6 +132,35 @@
     <h2>Veículos Cadastrados</h2>
 
     <%
+        String mensagem = null;
+        String tipoMensagem = null;
+
+      
+        if ("POST".equalsIgnoreCase(request.getMethod())) {
+            String acao = request.getParameter("acao");
+            if ("deletar".equals(acao)) {
+                String idParaDeletarStr = request.getParameter("id");
+                    try {
+                        int idParaDeletar = Integer.parseInt(idParaDeletarStr);
+                        DaoCarros.delete(idParaDeletar);
+                        mensagem = "Carro excluído com sucesso!";
+                        tipoMensagem = "success";
+                    }catch (RuntimeException e) {
+                        mensagem = "Erro ao excluir carro: " + e.getMessage();
+                        tipoMensagem = "error";
+                        e.printStackTrace();
+                    }
+                 
+            }
+        }
+        
+     
+        if (mensagem != null) {
+        %>
+            <p class="message <%=tipoMensagem%>"><%=mensagem%></p>
+        <%
+        }
+
         List<Carros> listaDeCarros = DaoCarros.getAll();
     %>
 
@@ -87,22 +170,34 @@
         <table>
             <thead>
                 <tr>
+                 	<th>Id</th>
                     <th>Placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Ano</th>
                     <th>Cor</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <% for (Carros carro : listaDeCarros) { %>
                 <tr>
+                	<td><%=carro.getId()%></td>
                     <td><%= carro.getPlaca() %></td>
                     <td><%= carro.getMarca() %></td>
                     <td><%= carro.getModelo() %></td>
                     <td><%= carro.getAno() %></td>
                     <td><%= carro.getCor() %></td>
-                </tr>
+                    <td class="action-cell">
+						    <a href='editarCarro.jsp?id=<%=carro.getId()%>'><button class="btn-action btn-edit">Editar</button></a>
+                            
+                            <form id="formDelete<%=carro.getId()%>" action="Consulta.jsp" method="post" style="display:inline;">
+                                <input type="hidden" name="acao" value="deletar">
+                                <input type="hidden" name="id" value="<%=carro.getId()%>">
+                                <button type="button" class="btn-action btn-delete" onclick="confirmarExclusao(<%=carro.getId()%>)">Excluir</button>
+                            </form>
+						</td>
+                   </tr>
                 <% } %>
             </tbody>
         </table>
